@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/about', function(){
-    return view('content.about', [
-    "name" => "lala",
-    "email" => "lala@gmail.com"]);
-});
+// Route::get('/about', function(){
+//     return view('content.about', [
+//     "name" => "lala",
+//     "email" => "lala@gmail.com"]);
+// });
 
-Route::get('/dashboard', function(){
-    return view('content.dashboard');
-});
+// Route::get('/dashboard', function(){
+//     return view('content.dashboard');
+// });
 
-Route::get('/about', function(){
-    return view('content.about');
-});
+// Route::get('/about', function(){
+//     return view('content.about');
+// });
 
+Route::get('/', [BukuController::class, 'index'])->name('buku.index');
+Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.delete');
